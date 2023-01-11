@@ -1,1 +1,53 @@
-,jgcg
+#include <iostream>
+#include <math.h>
+#include <cmath>
+using namespace std;
+#define PI 3.14159265
+
+struct Point
+{
+    double x;
+    double y;
+};
+Point pA, pB, pC;
+
+struct Odds
+{
+    double one;
+    double two;
+};
+Odds A, B, C;
+
+void intersect_median(double ax, double ay, double bx, double by, double cx, double cy, double& x, double& y)
+{
+    //координаты точки М на прямой ВС, где ВМ = МС = 1/2 ВС (median)
+    double mx = (bx + cx) / 2;
+    double my = (by + cy) / 2;
+    //координаты точки Н на прямой АВ, где АН = НВ = 1/2 АВ (median)
+    double hx = (ax + bx) / 2;
+    double hy = (ay + by) / 2;
+
+    A.one = ay - my;
+    B.one = mx - ax;
+    C.one = ax * my - mx * ay;
+
+    A.two = cy - hy;
+    B.two = hx - cx;
+    C.two = cx * hy - hx * cy;
+
+    double det = A.one * B.two - A.two * B.one;
+    x = (B.one * C.two - B.two * C.one) / det;
+    y = (A.two * C.one - A.one * C.two) / det;
+}
+
+int main()
+{
+    double x, y;
+    cin >> pA.x >> pA.y >> pB.x >> pB.y >> pC.x >> pC.y;
+
+    intersect_median(pA.x, pA.y, pB.x, pB.y, pC.x, pC.y, x, y);
+
+    printf("%.6f %.6f", x, y);
+
+    return 0;
+}
