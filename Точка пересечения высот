@@ -1,0 +1,46 @@
+#include <iostream>
+#include <math.h>
+#include <cmath>
+using namespace std;
+#define PI 3.14159265
+
+struct Point
+{
+    double x;
+    double y;
+};
+Point pA, pB, pC;
+
+struct Odds
+{
+    double one;
+    double two;
+};
+Odds A, B, C;
+
+void intersect(double ax, double ay, double bx, double by, double cx, double cy, double& x, double& y)
+{
+    A.one = cx - bx;
+    B.one = cy - by;
+    C.one = ax * (cx - bx) + ay * (cy - by);
+
+    A.two = cx - ax;
+    B.two = cy - ay;
+    C.two = bx * (cx - ax) + by * (cy - ay);
+
+    double det = A.one * B.two - A.two * B.one;
+    x = (C.one * B.two - C.two * B.one) / det;
+    y = (A.one * C.two - A.two * C.one) / det;
+}
+
+int main()
+{
+    double x, y;
+    cin >> pA.x >> pA.y >> pB.x >> pB.y >> pC.x >> pC.y;
+
+    intersect(pA.x, pA.y, pB.x, pB.y, pC.x, pC.y, x, y);
+
+    printf("%.6f %.6f", x, y);
+
+    return 0;
+}
